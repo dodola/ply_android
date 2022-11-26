@@ -72,16 +72,34 @@ ply 'tracepoint:tcp/tcp_receive_reset {
 
 Build and Installation
 ----------------------
-
-`ply` uses GNU's autotools as its build system. When building from
-a Git clone, use the following steps:
+use `AndroidToolsBuild` https://github.com/dodola/AndroidToolsBuild
 
 ```
-./autogen.sh   # to generate the configure script
-./configure
-make
-make install   # you probably need to be root for this
+git clone git@github.com:dodola/AndroidToolsBuild.git
+cd AndroidToolsBuild
+./scripts/download-ndk.sh
+make ply
 ```
+
+❗️For Android
+------------------
+Only test on `Pixel 4 android 13`
+
+Kernel Branch： `android-msm-coral-4.14-android13`
+
+Some Change 
+1. change `index` `rindex` to `strchr` `strrchr` 
+2. remove self check
+3. Fixed KERNEL VERSION for pixel4（DO NOT USE NDK LINUX HEADER KERNEL VERSION）
+
+Run on android
+-------------
+push `libply.so` `ply` to `/data/local/tmp`
+
+```
+$LD_LIBRARY_PATH:/data/local/tmp/" /data/local/tmp/ply 'kprobe:do_nanosleep { printf("PID %d sleeping...\n", pid);}
+```
+
 
 Contributing
 ------------
