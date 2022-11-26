@@ -68,7 +68,7 @@ ply 'tracepoint:tcp/tcp_receive_reset {
 		data->saddr, data->sport, data->dport);
 }'
 ```
-
+# ❗️For Android
 
 Build and Installation
 ----------------------
@@ -81,7 +81,7 @@ cd AndroidToolsBuild
 make ply
 ```
 
-❗️For Android
+Info
 ------------------
 Only test on `Pixel 4 android 13`
 
