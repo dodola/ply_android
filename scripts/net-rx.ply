@@ -1,0 +1,11 @@
+#!/sbin/ply
+
+kprobe:__netif_receive_skb_core
+{
+	rx[arg0] = time;
+}
+
+kprobe:ip_rcv_finish / rx[arg2] /
+{
+	@["rx"] = quantize(time - rx[arg2]);
+}
