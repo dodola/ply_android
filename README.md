@@ -97,7 +97,18 @@ Run on android
 push `libply.so` `ply` to `/data/local/tmp`
 
 ```
-$LD_LIBRARY_PATH:/data/local/tmp/" /data/local/tmp/ply 'kprobe:do_nanosleep { printf("PID %d sleeping...\n", pid);}
+$LD_LIBRARY_PATH:/data/local/tmp/" /data/local/tmp/ply 'kprobe:do_nanosleep { printf("PID %d sleeping...\n", pid);}'
+```
+
+sample result
+```
+flame:/data/local/tmp/bpftools # LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/data/local/tmp/ply/lib" /data/local/tmp/ply/sbin/ply 'kprobe:do_nanosleep { printf("PID %d sleeping...\n", pid);}'
+PID 742 sleeping...
+PID 742 sleeping...
+PID 742 sleeping...
+PID 742 sleeping...
+PID 742 sleeping...
+PID 742 sleeping...
 ```
 
 
